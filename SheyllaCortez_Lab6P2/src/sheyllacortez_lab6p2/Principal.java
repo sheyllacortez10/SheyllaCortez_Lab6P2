@@ -267,14 +267,19 @@ public class Principal extends javax.swing.JFrame {
         );
 
         jMenuItem2.setText("Modificar");
-        jMenuItem2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItem2MouseClicked(evt);
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
             }
         });
         jPopupMenu_trans_opciones.add(jMenuItem2);
 
         jMenuItem3.setText("Eliminar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jPopupMenu_trans_opciones.add(jMenuItem3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -438,11 +443,25 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jList_transMouseClicked
 
-    private void jMenuItem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem2MouseClicked
-        String nombrenuevo = JOptionPane.showInputDialog(jDialog_trans, "Ingrese nombre");
-        
-        
-    }//GEN-LAST:event_jMenuItem2MouseClicked
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        String nombreNuevo = JOptionPane.showInputDialog(jDialog_trans, "Ingrese nombre: ");
+        int nuevaEdad = Integer.parseInt(JOptionPane.showInputDialog(jDialog_trans, "Imgrese edad: "));
+        if (jList_trans.getSelectedIndex() >= 0) {
+            DefaultListModel modelo2 = (DefaultListModel) jList_trans.getModel();
+            ((Jugadores) modelo2.get(jList_trans.getSelectedIndex())).setNombre(nombreNuevo);
+            ((Jugadores) modelo2.get(jList_trans.getSelectedIndex())).setEdad(nuevaEdad);
+            jList_trans.setModel(modelo2);
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        if (jList_trans.getSelectedIndex() >= 0) {
+            DefaultListModel modelo3 = (DefaultListModel) jList_trans.getModel();
+            modelo3.remove(jList_trans.getSelectedIndex());
+            jList_trans.setModel(modelo3);
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments

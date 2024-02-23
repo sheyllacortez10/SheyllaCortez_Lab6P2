@@ -7,6 +7,7 @@ package sheyllacortez_lab6p2;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -266,6 +267,11 @@ public class Principal extends javax.swing.JFrame {
         );
 
         jMenuItem2.setText("Modificar");
+        jMenuItem2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem2MouseClicked(evt);
+            }
+        });
         jPopupMenu_trans_opciones.add(jMenuItem2);
 
         jMenuItem3.setText("Eliminar");
@@ -431,6 +437,12 @@ public class Principal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jList_transMouseClicked
+
+    private void jMenuItem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem2MouseClicked
+        String nombrenuevo = JOptionPane.showInputDialog(jDialog_trans, "Ingrese nombre");
+        
+        
+    }//GEN-LAST:event_jMenuItem2MouseClicked
 
     /**
      * @param args the command line arguments

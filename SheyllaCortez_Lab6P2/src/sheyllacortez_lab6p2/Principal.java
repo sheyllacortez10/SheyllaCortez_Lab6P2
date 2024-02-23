@@ -63,6 +63,9 @@ public class Principal extends javax.swing.JFrame {
         jList_trans = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
+        jPopupMenu_trans_opciones = new javax.swing.JPopupMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         jButton_principal_crearE = new javax.swing.JButton();
@@ -194,6 +197,11 @@ public class Principal extends javax.swing.JFrame {
         jButton2.setText("Transferir ->");
 
         jList_trans.setModel(new DefaultListModel());
+        jList_trans.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList_transMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList_trans);
 
         jScrollPane2.setViewportView(jTree1);
@@ -256,6 +264,12 @@ public class Principal extends javax.swing.JFrame {
             jDialog_transLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jMenuItem2.setText("Modificar");
+        jPopupMenu_trans_opciones.add(jMenuItem2);
+
+        jMenuItem3.setText("Eliminar");
+        jPopupMenu_trans_opciones.add(jMenuItem3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -365,6 +379,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+
         jDialog_crearequipos.pack();
         jDialog_crearequipos.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -395,6 +410,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton_principal_transMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_principal_transMouseClicked
 
+        
         jDialog_trans.pack();
         jDialog_trans.setVisible(true);
     }//GEN-LAST:event_jButton_principal_transMouseClicked
@@ -407,6 +423,14 @@ public class Principal extends javax.swing.JFrame {
         jSpinner_edad.setValue(15);
         jComboBox_pos.setSelectedItem(0);
     }//GEN-LAST:event_jButton_jdcrearjuga_agregarjugaMouseClicked
+
+    private void jList_transMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList_transMouseClicked
+        if (jList_trans.getSelectedIndex() >= 0) {
+            if (evt.isMetaDown()) {
+                jPopupMenu_trans_opciones.show(evt.getComponent(), evt.getX(), evt.getY());
+            }
+        }
+    }//GEN-LAST:event_jList_transMouseClicked
 
     /**
      * @param args the command line arguments
@@ -472,6 +496,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem_principal_crearJ;
     private javax.swing.JMenuItem jMenuItem_principal_trans;
     private javax.swing.JMenu jMenu_principal_crearE;
@@ -479,6 +505,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPopupMenu jPopupMenu_trans_opciones;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner_edad;

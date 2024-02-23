@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -36,13 +38,13 @@ public class Principal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextField_creae_pais = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextField_crea_equipo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jTextField_creaeq_ciudad = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jTextField_creaequi_estadio = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jDialog_creajuga = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
@@ -63,7 +65,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList_trans = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        jTree = new javax.swing.JTree();
         jPopupMenu_trans_opciones = new javax.swing.JPopupMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -93,27 +95,32 @@ public class Principal extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(153, 153, 255));
         jLabel3.setText("País del Equipo");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 120, 20));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 180, 20));
+        jPanel2.add(jTextField_creae_pais, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 180, 20));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(153, 153, 255));
         jLabel4.setText("Nombre del Equipo");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 160, -1));
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 180, -1));
+        jPanel2.add(jTextField_crea_equipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 180, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(153, 153, 255));
         jLabel5.setText("Ciudad");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 180, -1));
+        jPanel2.add(jTextField_creaeq_ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 180, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(153, 153, 255));
         jLabel6.setText("Estadio");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 180, -1));
+        jPanel2.add(jTextField_creaequi_estadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 180, -1));
 
         jButton4.setText("Agregar");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
         jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 120, 40));
 
         javax.swing.GroupLayout jDialog_crearequiposLayout = new javax.swing.GroupLayout(jDialog_crearequipos.getContentPane());
@@ -205,7 +212,9 @@ public class Principal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList_trans);
 
-        jScrollPane2.setViewportView(jTree1);
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Equipos");
+        jTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane2.setViewportView(jTree);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -463,6 +472,68 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        DefaultTreeModel modelo4 = (DefaultTreeModel) jTree.getModel();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) modelo4.getRoot();
+        DefaultMutableTreeNode nodoEquipo;
+        nodoEquipo = new DefaultMutableTreeNode(new Equipos(jTextField_creae_pais.getText(), jTextField_jdcreaj_nombre.getText(), jTextField_creaeq_ciudad.getText(), jTextField_creaequi_estadio.getText()));
+        String pais = "";
+        pais = jTextField_creae_pais.getText();
+
+        int existe = 1;
+        for (int i = 0; i < root.getChildCount(); i++) {
+            if (root.getChildAt(i).toString().equals(pais)) {
+                
+            }
+        }
+        
+        
+        
+        
+        
+        
+        root.add(nodoEquipo);
+        modelo4.reload();
+        /*
+           
+            
+
+
+            int centinela = -1;           
+            for (int i = 0; i < raiz.getChildCount(); i++) {
+                if (raiz.getChildAt(i).toString().
+                        equals(nacionalidad)) {
+                    DefaultMutableTreeNode p
+                            = new DefaultMutableTreeNode(
+                                    new Persona(nombre,
+                                            edad, nacionalidad)
+                            );
+                    ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
+                    centinela = 1;
+                } //fin if
+            } //fin for  
+            
+            if (centinela == -1) {
+                DefaultMutableTreeNode n
+                        = new DefaultMutableTreeNode(nacionalidad);
+                DefaultMutableTreeNode p
+                        = new DefaultMutableTreeNode(
+                                new Persona(nombre, edad,
+                                        nacionalidad)
+                        );
+                n.add(p);
+                raiz.add(n);
+            }  // fin if          
+            modeloARBOL.reload();
+            
+                        
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "No hay persona seleccionada");
+        }
+*/
+    }//GEN-LAST:event_jButton4MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -540,13 +611,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner_edad;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField_crea_equipo;
+    private javax.swing.JTextField jTextField_creae_pais;
+    private javax.swing.JTextField jTextField_creaeq_ciudad;
+    private javax.swing.JTextField jTextField_creaequi_estadio;
     private javax.swing.JTextField jTextField_jdcreaj_nombre;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JTree jTree1;
+    private javax.swing.JTree jTree;
     // End of variables declaration//GEN-END:variables
     ArrayList<Jugadores> jugador = new ArrayList<>();
+    DefaultMutableTreeNode nodoSelected;
+    Equipos equipoSelected;
 }

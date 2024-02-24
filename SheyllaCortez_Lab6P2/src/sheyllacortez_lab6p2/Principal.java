@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package sheyllacortez_lab6p2;
-
+//Agregando un commit nuevo
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -487,51 +487,9 @@ public class Principal extends javax.swing.JFrame {
             }
         }
         
-        
-        
-        
-        
-        
         root.add(nodoEquipo);
         modelo4.reload();
-        /*
-           
-            
-
-
-            int centinela = -1;           
-            for (int i = 0; i < raiz.getChildCount(); i++) {
-                if (raiz.getChildAt(i).toString().
-                        equals(nacionalidad)) {
-                    DefaultMutableTreeNode p
-                            = new DefaultMutableTreeNode(
-                                    new Persona(nombre,
-                                            edad, nacionalidad)
-                            );
-                    ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
-                    centinela = 1;
-                } //fin if
-            } //fin for  
-            
-            if (centinela == -1) {
-                DefaultMutableTreeNode n
-                        = new DefaultMutableTreeNode(nacionalidad);
-                DefaultMutableTreeNode p
-                        = new DefaultMutableTreeNode(
-                                new Persona(nombre, edad,
-                                        nacionalidad)
-                        );
-                n.add(p);
-                raiz.add(n);
-            }  // fin if          
-            modeloARBOL.reload();
-            
-                        
-        } else {
-            JOptionPane.showMessageDialog(this,
-                    "No hay persona seleccionada");
-        }
-*/
+      
     }//GEN-LAST:event_jButton4MouseClicked
 
     /**

@@ -515,7 +515,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        if (((jTextField_crea_equipo.getText()).isEmpty()) || (( jTextField_creae_pais.getText().isEmpty()) || ((jTextField_creaeq_ciudad.getText().isEmpty()) || (( jTextField_creaequi_estadio.getText()).isEmpty())))) {
+        if (!(((jTextField_crea_equipo.getText()).isEmpty()) || (( jTextField_creae_pais.getText().isEmpty()) || ((jTextField_creaeq_ciudad.getText().isEmpty()) || (( jTextField_creaequi_estadio.getText()).isEmpty()))))) {
 
         DefaultTreeModel modelo4 = (DefaultTreeModel) jTree.getModel();
         DefaultMutableTreeNode root = (DefaultMutableTreeNode) modelo4.getRoot();

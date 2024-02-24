@@ -70,6 +70,8 @@ public class Principal extends javax.swing.JFrame {
         jPopupMenu_trans_opciones = new javax.swing.JPopupMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jPopupMenu_trans_equiposelim = new javax.swing.JPopupMenu();
+        jMenuItem_transEquipos_eliminate = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         jButton_principal_crearE = new javax.swing.JButton();
@@ -215,6 +217,11 @@ public class Principal extends javax.swing.JFrame {
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Equipos");
         jTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jTree.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTreeMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTree);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -291,6 +298,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jPopupMenu_trans_opciones.add(jMenuItem3);
+
+        jMenuItem_transEquipos_eliminate.setText("Eliminar");
+        jMenuItem_transEquipos_eliminate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_transEquipos_eliminateActionPerformed(evt);
+            }
+        });
+        jPopupMenu_trans_equiposelim.add(jMenuItem_transEquipos_eliminate);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -491,7 +506,6 @@ public class Principal extends javax.swing.JFrame {
                 existe = 0;
             }
         }
-
         if (existe == 1) {
             DefaultMutableTreeNode anadir = new DefaultMutableTreeNode(pais);
             DefaultMutableTreeNode equipo = new DefaultMutableTreeNode(new Equipos(jTextField_crea_equipo.getText(), jTextField_creae_pais.getText(), jTextField_creaeq_ciudad.getText(), jTextField_creaequi_estadio.getText()));
@@ -500,6 +514,24 @@ public class Principal extends javax.swing.JFrame {
         }
         modelo4.reload();
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jTreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTreeMouseClicked
+        if (evt.isMetaDown()) {
+            Object comparar = jTree.getSelectionPath().getLastPathComponent();
+            nodoSelected = (DefaultMutableTreeNode) comparar;
+            if (nodoSelected.getUserObject() instanceof Equipos) {
+                //esto me va a servir para transferrir al equipo el jugador al nodo selecionado
+                equipoSelected = (Equipos) nodoSelected.getUserObject();
+                jPopupMenu_trans_equiposelim.show(evt.getComponent(), evt.getX(), evt.getY());
+            }
+        }
+    }//GEN-LAST:event_jTreeMouseClicked
+
+    private void jMenuItem_transEquipos_eliminateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_transEquipos_eliminateActionPerformed
+       DefaultTreeModel modelo5 = (DefaultTreeModel) jTree.getModel();
+       modelo5.removeNodeFromParent(nodoSelected);
+       modelo5.reload();
+    }//GEN-LAST:event_jMenuItem_transEquipos_eliminateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -569,11 +601,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem_principal_crearJ;
     private javax.swing.JMenuItem jMenuItem_principal_trans;
+    private javax.swing.JMenuItem jMenuItem_transEquipos_eliminate;
     private javax.swing.JMenu jMenu_principal_crearE;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPopupMenu jPopupMenu_trans_equiposelim;
     private javax.swing.JPopupMenu jPopupMenu_trans_opciones;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

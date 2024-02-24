@@ -4,6 +4,7 @@
  */
 package sheyllacortez_lab6p2;
 //Agregando un commit nuevo
+
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -430,7 +431,6 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton_principal_transMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_principal_transMouseClicked
 
-        
         jDialog_trans.pack();
         jDialog_trans.setVisible(true);
     }//GEN-LAST:event_jButton_principal_transMouseClicked
@@ -475,21 +475,30 @@ public class Principal extends javax.swing.JFrame {
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         DefaultTreeModel modelo4 = (DefaultTreeModel) jTree.getModel();
         DefaultMutableTreeNode root = (DefaultMutableTreeNode) modelo4.getRoot();
-        DefaultMutableTreeNode nodoEquipo;
-        nodoEquipo = new DefaultMutableTreeNode(new Equipos(jTextField_creae_pais.getText(), jTextField_jdcreaj_nombre.getText(), jTextField_creaeq_ciudad.getText(), jTextField_creaequi_estadio.getText()));
+        //añadirlo a un for para validar 
+//        DefaultMutableTreeNode nodoEquipo;
+//        nodoEquipo = new DefaultMutableTreeNode(new Equipos(jTextField_creae_pais.getText(), jTextField_jdcreaj_nombre.getText(), jTextField_creaeq_ciudad.getText(), jTextField_creaequi_estadio.getText()));
         String pais = "";
         pais = jTextField_creae_pais.getText();
 
+        //guie de lo que nos enseño el inge 
+        //usar un centinela pues porque si cambia se agrega si no, el pais no se agrega
         int existe = 1;
         for (int i = 0; i < root.getChildCount(); i++) {
             if (root.getChildAt(i).toString().equals(pais)) {
-                
+                DefaultMutableTreeNode minodo = new DefaultMutableTreeNode(new Equipos(jTextField_crea_equipo.getText(), jTextField_creae_pais.getText(), jTextField_creaeq_ciudad.getText(), jTextField_creaequi_estadio.getText()));
+                ((DefaultMutableTreeNode) root.getChildAt(i)).add(minodo);
+                existe = 0;
             }
         }
-        
-        root.add(nodoEquipo);
+
+        if (existe == 1) {
+            DefaultMutableTreeNode anadir = new DefaultMutableTreeNode(pais);
+            DefaultMutableTreeNode equipo = new DefaultMutableTreeNode(new Equipos(jTextField_crea_equipo.getText(), jTextField_creae_pais.getText(), jTextField_creaeq_ciudad.getText(), jTextField_creaequi_estadio.getText()));
+            anadir.add(equipo);
+            root.add(anadir);
+        }
         modelo4.reload();
-      
     }//GEN-LAST:event_jButton4MouseClicked
 
     /**

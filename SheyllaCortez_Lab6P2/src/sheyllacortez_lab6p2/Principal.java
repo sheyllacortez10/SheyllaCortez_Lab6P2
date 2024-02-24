@@ -6,9 +6,11 @@ package sheyllacortez_lab6p2;
 //Agregando un commit nuevo
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -451,12 +453,16 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_principal_transMouseClicked
 
     private void jButton_jdcrearjuga_agregarjugaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_jdcrearjuga_agregarjugaMouseClicked
-        DefaultListModel modelo1 = (DefaultListModel) jList_trans.getModel();
-        modelo1.addElement(new Jugadores(jTextField_jdcreaj_nombre.getText(), (Integer) jSpinner_edad.getValue(), (String) jComboBox_pos.getSelectedItem()));
-        jList_trans.setModel(modelo1);
-        jTextField_jdcreaj_nombre.setText("");
-        jSpinner_edad.setValue(15);
-        jComboBox_pos.setSelectedItem(0);
+        if (!(jTextField_jdcreaj_nombre.getText()).isEmpty()) {
+            DefaultListModel modelo1 = (DefaultListModel) jList_trans.getModel();
+            modelo1.addElement(new Jugadores(jTextField_jdcreaj_nombre.getText(), (Integer) jSpinner_edad.getValue(), (String) jComboBox_pos.getSelectedItem()));
+            jList_trans.setModel(modelo1);
+            jTextField_jdcreaj_nombre.setText("");
+            jSpinner_edad.setValue(15);
+            jComboBox_pos.setSelectedItem(0);
+        } else {
+            JOptionPane.showMessageDialog(jDialog_creajuga, "Tiene espacio vacios");
+        }
     }//GEN-LAST:event_jButton_jdcrearjuga_agregarjugaMouseClicked
 
     private void jList_transMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList_transMouseClicked
@@ -469,12 +475,33 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
+        //validar nombre
+        String validador = "[^\\d]+";
         String nombreNuevo = JOptionPane.showInputDialog(jDialog_trans, "Ingrese nombre: ");
-        int nuevaEdad = Integer.parseInt(JOptionPane.showInputDialog(jDialog_trans, "Imgrese edad: "));
+        while (!nombreNuevo.matches(validador)) {
+            nombreNuevo = JOptionPane.showInputDialog(jDialog_trans, "Ingrese nombre: ");
+        }
+
+        //validar edad
+        String nuevaEdad = JOptionPane.showInputDialog(jDialog_trans, "Ingrese edad: ");
+        Pattern patron = Pattern.compile("[0-9]+");
+        boolean letrasi = patron.matcher(nuevaEdad).matches();
+        while (!letrasi) {
+            nuevaEdad = JOptionPane.showInputDialog(jDialog_trans, "Ingrese edad: ");
+            letrasi = patron.matcher(nuevaEdad).matches();
+        }
+        while ((Integer.parseInt(nuevaEdad) < 15) || (Integer.parseInt(nuevaEdad) > 45)) {
+            nuevaEdad = JOptionPane.showInputDialog(jDialog_trans, "Ingrese edad: ");
+        }
+        while (!letrasi) {
+            nuevaEdad = JOptionPane.showInputDialog(jDialog_trans, "Ingrese edad: ");
+            letrasi = patron.matcher(nuevaEdad).matches();
+        }
+
         if (jList_trans.getSelectedIndex() >= 0) {
             DefaultListModel modelo2 = (DefaultListModel) jList_trans.getModel();
             ((Jugadores) modelo2.get(jList_trans.getSelectedIndex())).setNombre(nombreNuevo);
-            ((Jugadores) modelo2.get(jList_trans.getSelectedIndex())).setEdad(nuevaEdad);
+            ((Jugadores) modelo2.get(jList_trans.getSelectedIndex())).setEdad(Integer.parseInt(nuevaEdad));
             jList_trans.setModel(modelo2);
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -488,6 +515,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        if (((jTextField_crea_equipo.getText()).isEmpty()) || (( jTextField_creae_pais.getText().isEmpty()) || ((jTextField_creaeq_ciudad.getText().isEmpty()) || (( jTextField_creaequi_estadio.getText()).isEmpty())))) {
+
         DefaultTreeModel modelo4 = (DefaultTreeModel) jTree.getModel();
         DefaultMutableTreeNode root = (DefaultMutableTreeNode) modelo4.getRoot();
         //añadirlo a un for para validar 
@@ -513,6 +542,9 @@ public class Principal extends javax.swing.JFrame {
             root.add(anadir);
         }
         modelo4.reload();
+        } else {
+            JOptionPane.showMessageDialog(jDialog_crearequipos, "Tiene espacio vacios");
+        }
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jTreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTreeMouseClicked
@@ -533,9 +565,6 @@ public class Principal extends javax.swing.JFrame {
        modelo5.reload();
     }//GEN-LAST:event_jMenuItem_transEquipos_eliminateActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
